@@ -7,7 +7,7 @@ from nltk.tokenize import word_tokenize
 
 from flask import Flask
 from flask import render_template, request, jsonify
-from plotly.graph_objs import Bar
+from plotly.graph_objs import Bar, Histogram
 from sklearn.externals import joblib
 from sqlalchemy import create_engine
 
@@ -48,6 +48,9 @@ def index():
     category_shares = (df.iloc[:, 4:].sum()/df.shape[0]).sort_values(ascending=False)
     category_names = list(category_shares.index)
     
+    # count the number of categories the messages are allocated to
+    message_category_counts = df.iloc[:, 4:].sum(axis=1)
+    
     # create visuals
    
     graphs = [
@@ -85,6 +88,24 @@ def index():
                 },
                 'yaxis': {
                     'tickformat': "%"
+                }
+            }
+        },
+        {    
+            'data': [
+                Histogram(
+                    x=message_category_counts,
+                )
+            ],
+
+            'layout': {
+                'title': 'Histogram on number of categories messages are allocated to',
+                'xaxis': {
+                    'title': "Categories",
+                },
+                'yaxis': {
+                    'title': "counts",
+                    'range': [0,7000]
                 }
             }
         }
