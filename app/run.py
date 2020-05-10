@@ -1,13 +1,14 @@
 import json
 import plotly
 import pandas as pd
+import numpy as np
 
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 
 from flask import Flask
 from flask import render_template, request, jsonify
-from plotly.graph_objs import Bar, Histogram
+from plotly.graph_objs import Bar, Histogram, Heatmap
 from sklearn.externals import joblib
 from sqlalchemy import create_engine
 
@@ -50,6 +51,22 @@ def index():
     
     # count the number of categories the messages are allocated to
     message_category_counts = df.iloc[:, 4:].sum(axis=1)
+    
+    # build category co-occurence matrix
+    # https://stackoverflow.com/questions/20574257/constructing-a-co-occurrence-matrix-in-python-pandas
+    category_labels = df.iloc[:,4:].columns.tolist()
+    data = df.iloc[:,4:]
+
+    # Compute cooccurrence matrix 
+    cooccurrence_matrix = np.dot(data.transpose(),data)
+
+    # Compute cooccurrence matrix in percentage
+    # FYI: http://stackoverflow.com/questions/19602187/numpy-divide-each-row-by-a-vector-element
+    #      http://stackoverflow.com/questions/26248654/numpy-return-0-with-divide-by-zero/32106804#32106804
+    cooccurrence_matrix_diagonal = np.diagonal(cooccurrence_matrix)
+    with np.errstate(divide='ignore', invalid='ignore'):
+        cooccurrence_matrix_percentage = np.nan_to_num(np.true_divide(cooccurrence_matrix, cooccurrence_matrix_diagonal[:, None]))
+
     
     # create visuals
    
@@ -106,6 +123,27 @@ def index():
                 'yaxis': {
                     'title': "counts",
                     'range': [0,7000]
+                }
+            }
+        },
+        {
+            'data': [
+                Heatmap(
+                    x = category_labels,
+                    y = category_labels,
+                    z = cooccurrence_matrix_percentage,
+                    colorscale = 'Blues',
+                    reversescale = True
+                )
+            ],
+
+            'layout': {
+                'title': 'Co-occurence of categories in messages',
+                'xaxis': {
+                    'tickfont' : {'size':8}
+                },
+                'yaxis': {
+                    'tickfont' : {'size':8}
                 }
             }
         }
