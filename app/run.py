@@ -100,12 +100,13 @@ def index():
             'layout': {
                 'title': 'Share of messages labelled by categories',
                 'xaxis': {
-                    'title': "Categories",
-                    'tickangle':45
+                    'tickangle': 45
                 },
                 'yaxis': {
                     'tickformat': "%"
-                }
+                },
+                'height': 490,
+                'margin': {'b':120}
             }
         },
         {    
@@ -116,12 +117,12 @@ def index():
             ],
 
             'layout': {
-                'title': 'Histogram on number of categories messages are allocated to',
+                'title': 'Histogram on number of <br> categories messages are allocated to',
                 'xaxis': {
                     'title': "Categories",
                 },
                 'yaxis': {
-                    'title': "counts",
+                    'title': "Count",
                     'range': [0,7000]
                 }
             }
@@ -139,12 +140,14 @@ def index():
 
             'layout': {
                 'title': 'Co-occurence of categories in messages',
+                'height': 600,
                 'xaxis': {
                     'tickfont' : {'size':8}
                 },
                 'yaxis': {
                     'tickfont' : {'size':8}
-                }
+                },
+                'margin': {'b':150}
             }
         }
     ]
