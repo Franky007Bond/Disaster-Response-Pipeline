@@ -68,7 +68,7 @@ After downloading / cloning the repository following steps are necessary to star
 ## Structure of pipeline<a name="structure_pipeline"></a>
 The following figure shows an overview of the different elements of the pipeline:
 
-![Disaster Pipeline Structure](\assets\Disaster-Response-Pipeline-Structure.png)
+![Disaster Pipeline Structure](assets/Disaster-Response-Pipeline-Structure.png)
 
 ### ETL-Pipeline<a name="etl"></a>
 Within the ETL-pipeline, data preparation steps are executed, including dropping nan values (even if the original dataset does not contain any nan values, the pipeline can deal with it), encoding the different categories and dropping any duplicate datasets.
@@ -113,9 +113,9 @@ Following additional features have been tested:
 
 The charts below show the spread of these features among the different categories. You can find the corresponding png-files in the assets subfolder.
 
-| [![Feature Benchmark 1](\assets\Feature_Engineering_1.png)](\assets\Feature_Engineering_1.png) | [![Feature Benchmark 2](\assets\Feature_Engineering_2.png)](\assets\Feature_Engineering_2.png) |
+| [![Feature Benchmark 1](assets/Feature_Engineering_1.png)](assets/Feature_Engineering_1.png) | [![Feature Benchmark 2](assets/Feature_Engineering_2.png)](assets/Feature_Engineering_2.png) |
 |:---:|:---:|
-| [![Feature Benchmark 3](\assets\Feature_Engineering_3.png)](\assets\Feature_Engineering_3.png)|    |
+| [![Feature Benchmark 3](assets/Feature_Engineering_3.png)](assets/Feature_Engineering_3.png)|    |
 
 As the feature *Message contains a cardinal number* shows the widest spread, this one has been included in the pipeline.
 
@@ -140,9 +140,9 @@ The Web App illustrates charts on some general statistics of the disaster respon
 
 Furthermore, the text input field at the top of the page allows to classify  new disaster response messages.
 
-![Web App screenshot](\assets\Web-App.png)
+![Web App screenshot](assets/Web-App.png)
 
-![Web App screenshot - categorized_message](\assets\Categorized_message.png)
+![Web App screenshot - categorized_message](assets/Categorized_message.png)
 
 ## Discussion & Outlook<a name="discussion"></a>
 As we can see from the tables above there is still room for improvement with regard to the classification performance.
