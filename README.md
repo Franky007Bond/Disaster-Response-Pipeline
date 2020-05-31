@@ -140,9 +140,9 @@ The Web App illustrates charts on some general statistics of the disaster respon
 
 Furthermore, the text input field at the top of the page allows to classify  new disaster response messages.
 
-![Web App screenshot](assets/Web-App.png)
+![Web App screenshot](assets/Web-App.PNG)
 
-![Web App screenshot - categorized_message](assets/Categorized_message.png)
+![Web App screenshot - categorized_message](assets/Categorized_message.PNG)
 
 ## Discussion & Outlook<a name="discussion"></a>
 As we can see from the tables above there is still room for improvement with regard to the classification performance.
